@@ -8,36 +8,31 @@ const loadPost = () => {
     })
 }
 
+// {userId: 10, id: 99, title: 'temporibus sit alias delectus eligendi possimus magni', body: 'quo deleniti praesentium dicta non quod\naut est mo…lestias et officia quis nihil\nitaque dolorem quia'}
+
 const displayPosts = (posts) => {
-    // 1. get the container
-    const postContainer = document.getElementById("post-container")
-    console.log(postContainer)
+    // 1. get the container and empty the container
+    const postsContainer = document.getElementById("post-container");
+    postsContainer.innerHTML = ""; // ek data ek bar e dekhabe
 
+    posts.forEach((post)=>{
+        //2. create element
+        const postCard = document.createElement("div");
+        postCard.innerHTML = `
+        <div class="post-card">
 
-    // console.log(posts)
+            <h2>${post.title}</h2>
+            <p>${post.body}</p>
 
-    // for (let i = 0; i < posts.length; i++){
-    //     console.log(posts[i]);
-    // }
-
-    // for (let post of posts) {
-    //     console.log(post);
-    // }
-
-
-    posts.forEach((post) => {
-        console.log(post)
-        console.log(post.title)
-        // 2. create HTML element
-        const li = document.createElement("li");
-        li.innerHTML = post.title;
-        console.log(li)
-
-
-        // 3. add li into container
-        postContainer.appendChild(li);
+        </div>
+        `;
+        // 3. add to the container
+        postsContainer.append(postCard);
 
     })
+    
 
 
 }
+
+loadPost(); // btn a click na korle o data ui te dekha jabe
